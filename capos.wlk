@@ -1,10 +1,16 @@
 object ronaldo {
     const maximosArtefactosAlPrincipio = 2
     var maximosArtefactos = maximosArtefactosAlPrincipio
-    var artefactos = []
+    const artefactosEncima = []
+    const artefactosEnCastillo = []
+    const artefactosQueEncontro = []
 
-    method sinEspacio() = artefactos.size() >= maximosArtefactos
-    method tieneArtefacto(artefacto) = artefactos.contains(artefacto)
+    method sinEspacio() = artefactosEncima.size() >= maximosArtefactos
+    method tieneArtefacto(artefacto) = (artefactosEncima.contains(artefacto))
+    method artefactosQuePosee() = artefactosEncima
+    method artefactosEnCastillo() = artefactosEnCastillo
+    method tieneArtefactoEnCastillo(artefacto) = artefactosEnCastillo.contains(artefacto)
+    method artefactosQueEncontro() = artefactosQueEncontro
 
     method nuevaCapacidadDeArtefactos(num) {
         maximosArtefactos = num
@@ -12,12 +18,17 @@ object ronaldo {
 
     method agregarArtefacto(artefacto) {
         if(not self.sinEspacio()) {
-            artefactos.add(artefacto)
+            artefactosEncima.add(artefacto)
+            artefactosQueEncontro.add(artefacto)
+        }
+        else {
+            artefactosQueEncontro.add(artefacto)
         }
     }
     method dejarArtefactos(lugar){
-        lugar.almacenar(artefactos)
-        artefactos = []
+        lugar.almacenar(artefactosEncima)
+        artefactosEncima.clear()
+        artefactosEnCastillo.addAll(lugar.todosLosArtefactos())
     }
 
 }
@@ -38,8 +49,9 @@ object armaduraDeAceroValyrio{
 }
 
 object castilloDePiedra {
-    var almacenamiento = []
+    const almacenamiento = []
 
+    method todosLosArtefactos() = almacenamiento
     method tieneArtefacto(artefacto) = almacenamiento.contains(artefacto)
 
     method almacenar(artefactos) {
