@@ -1,1 +1,32 @@
-r
+import capos.*
+ 
+describe "Espada,libro,collar"{
+    test "Espada,libro,collar"{
+        ronaldo.agregarArtefacto(espadaDelDestino)
+        ronaldo.agregarArtefacto(libroDeHechizos)
+        ronaldo.agregarArtefacto(collarDivino)
+        assert.equals(true, ronaldo.tieneArtefacto(espadaDelDestino))
+        assert.equals(true, ronaldo.tieneArtefacto(libroDeHechizos))
+        assert.equals(false, ronaldo.tieneArtefacto(collarDivino))
+
+    }
+}
+
+describe "castillo" {
+    test "castillo" {
+        ronaldo.agregarArtefacto(espadaDelDestino)
+        ronaldo.agregarArtefacto(libroDeHechizos)
+        ronaldo.dejarArtefactos(castilloDePiedra)
+        
+        assert.equals(true, castilloDePiedra.tieneArtefacto(espadaDelDestino))
+        assert.equals(false, ronaldo.tieneArtefacto(espadaDelDestino))
+        assert.equals(true, castilloDePiedra.tieneArtefacto(libroDeHechizos))
+        assert.equals(false, ronaldo.tieneArtefacto(libroDeHechizos))
+
+        ronaldo.agregarArtefacto(collarDivino)
+        ronaldo.dejarArtefactos(castilloDePiedra)
+        assert.equals(true, castilloDePiedra.tieneArtefacto(collarDivino))
+        assert.equals(false, ronaldo.tieneArtefacto(collarDivino))
+
+    }
+}
